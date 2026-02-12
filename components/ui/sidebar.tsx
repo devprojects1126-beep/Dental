@@ -725,16 +725,19 @@ function Navbar(){
     },
     {
       title: "About",
-      navigation:[
-          {
-              label:"Clinic Profile",
-              url:"/pages/ClinicProfile",
-          },
-          {
-              label:"Specialists",
-              url:"/pages/Specialists",
-          },
-      ]
+      url: "/pages/About",
+      // navigation:[
+      //     {
+      //         label:"Clinic Profile",
+      //         url:"/pages/ClinicProfile",
+      //         icon:UserPen 
+      //     },
+      //     {
+      //         label:"Specialists",
+      //         url:"/pages/Specialists",
+      //         icon:UsersRound 
+      //     },
+      // ]
     },
     {
       title: "Services",
@@ -753,30 +756,36 @@ function Navbar(){
     items.map((items,index)=> (
       <div key={index} className="max-sm:hidden">
         { 
-          items.url?(
+           items.url &&
             <div key={index} className="uppercase flex items-center">
               <Link href={items.url} className={`${pathname===items.url && title===items.title?"text-blue-700 font-bold":""} ${index === getLength?"border-r-0":"border-r-2"} px-15 border-black dark:border-white`} onClick={() => setTitle(items.title)}> 
                 {items.title}
               </Link>
             </div>
-          ):(
-             <DropdownMenu >
-              <DropdownMenuTrigger asChild>
-                <h1 className={` ${pathname === "/pages/ClinicProfile"?"text-blue-700 font-bold":""} ${pathname === "/pages/Specialists" ?"text-blue-700 font-bold":""} px-15 border-r-2 border-black dark:border-white cursor-pointer uppercase`} >{items.title}</h1>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56 uppercase">
-                  {
-                    items.navigation?.map((items,index) => (
-                       <DropdownMenuItem key={index}>
-                          <Link href={items.url} className={`${pathname===items.url?"text-blue-700 font-bold":""} cursor-pointer w-full`}> 
-                            {items.label}
-                          </Link>
-                        </DropdownMenuItem>
-                    ))
-                  }
-              </DropdownMenuContent>
-            </DropdownMenu>
-          )
+          // items.url?(
+          //   <div key={index} className="uppercase flex items-center">
+          //     <Link href={items.url} className={`${pathname===items.url && title===items.title?"text-blue-700 font-bold":""} ${index === getLength?"border-r-0":"border-r-2"} px-15 border-black dark:border-white`} onClick={() => setTitle(items.title)}> 
+          //       {items.title}
+          //     </Link>
+          //   </div>
+          // ):(
+          //    <DropdownMenu >
+          //     <DropdownMenuTrigger asChild>
+          //       <h1 className={` ${pathname === "/pages/ClinicProfile"?"text-blue-700 font-bold":""} ${pathname === "/pages/Specialists" ?"text-blue-700 font-bold":""} px-15 border-r-2 border-black dark:border-white cursor-pointer uppercase`} >{items.title}</h1>
+          //     </DropdownMenuTrigger>
+          //     <DropdownMenuContent className="w-56 uppercase">
+          //         {
+          //           items.navigation?.map((items,index) => (
+          //              <DropdownMenuItem key={index}>
+          //                 <Link href={items.url} className={`${pathname===items.url?"text-blue-700 font-bold":""} cursor-pointer w-full`}> 
+          //                   {items.label}
+          //                 </Link>
+          //               </DropdownMenuItem>
+          //           ))
+          //         }
+          //     </DropdownMenuContent>
+          //   </DropdownMenu>
+          // )
         }
       </div>
     ))

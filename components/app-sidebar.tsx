@@ -1,5 +1,5 @@
 "use client"
-import { Home, Inbox, MapPin, SquareSlash ,UserPen,UsersRound } from "lucide-react"
+import { Home, Inbox, MapPin, SquareSlash} from "lucide-react"
 import Link from "next/link"
 import Image from 'next/image';
 
@@ -24,19 +24,20 @@ const items = [
   },
   {
     title: "About",
+    url: "/pages/About",
     icon: Inbox,
-    navigation:[
-        {
-            label:"Clinic Profile",
-            url:"/pages/ClinicProfile",
-            icon:UserPen 
-        },
-        {
-            label:"Specialists",
-            url:"/pages/Specialists",
-            icon:UsersRound 
-        },
-    ]
+    // navigation:[
+    //     {
+    //         label:"Clinic Profile",
+    //         url:"/pages/ClinicProfile",
+    //         icon:UserPen 
+    //     },
+    //     {
+    //         label:"Specialists",
+    //         url:"/pages/Specialists",
+    //         icon:UsersRound 
+    //     },
+    // ]
   },
   {
     title: "Services",
@@ -72,8 +73,7 @@ export function AppSidebar() {
               {items.map((item,index) => (
                 <SidebarComponents 
                   key={index} 
-                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                  // @ts-expect-error
+
                   item={item} 
                   active={active} 
                   setActive={setActive}

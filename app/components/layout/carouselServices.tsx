@@ -1,6 +1,5 @@
 "use client"
 import * as React from "react"
-import Autoplay from "embla-carousel-autoplay"
 import Image from "next/image"
 import { Card } from "@/components/ui/card"
 import {
@@ -30,17 +29,24 @@ export const CarouselServices = () => {
                     <Image src={item.image} alt="Upload Image"  fill style={{ objectFit: 'cover' }} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"/>
                 </div>
               </Card>
-              <div className="absolute top-1/4 text-center w-full text-2xl">
-                <h1 className="text-2xl w-1/2 rounded-r-full font-bold text-white" style={{"backgroundColor":"rgba(0,0,0,0.5)"}}>{item.offer}</h1>
-              </div>
+              <div className="absolute inset-0 flex items-center justify-center px-4">
+                <h1
+                  className="max-w-[90%] sm:max-w-[70%] md:max-w-[60%]
+                            text-base sm:text-lg md:text-xl lg:text-2xl
+                            px-4 py-2 sm:px-6 sm:py-3
+                            rounded-full font-bold text-white text-center
+                            bg-black/50">
+                  {item.offer}
+                </h1>
+            </div>
             </div>
           </CarouselItem>
         ))}
       </CarouselContent>
-      <div className="flex">
-        <CarouselPrevious className="cursor-pointer"/>
-        <CarouselNext className="cursor-pointer"/>
-      </div>
+    <div className="pointer-events-none absolute inset-y-0 left-0 right-0 flex items-center justify-between px-4">
+      <CarouselPrevious className="pointer-events-auto cursor-pointer relative left-0" />
+      <CarouselNext className="pointer-events-auto cursor-pointer relative right-0" />
+    </div>
     </Carousel>
   )
 }

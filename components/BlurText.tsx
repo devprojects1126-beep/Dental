@@ -14,18 +14,23 @@ type BlurTextProps = {
   easing?: Easing | Easing[];
   onAnimationComplete?: () => void;
   stepDuration?: number;
-  isHTML?: boolean; // 👈 added prop
 };
 
 const buildKeyframes = (
   from: Record<string, string | number>,
   steps: Array<Record<string, string | number>>
 ): Record<string, Array<string | number>> => {
-  const keys = new Set<string>([...Object.keys(from), ...steps.flatMap(s => Object.keys(s))]);
+  const keys = new Set<string>([
+    ...Object.keys(from),
+    ...steps.flatMap(s => Object.keys(s))
+  ]);
+
   const keyframes: Record<string, Array<string | number>> = {};
+
   keys.forEach(k => {
     keyframes[k] = [from[k], ...steps.map(s => s[k])];
   });
+
   return keyframes;
 };
 
@@ -41,24 +46,30 @@ const BlurText: React.FC<BlurTextProps> = ({
   animationTo,
   easing = (t: number) => t,
   onAnimationComplete,
-  stepDuration = 0.35,
-  isHTML = false // 👈 default false
+  stepDuration = 0.35
 }) => {
-  const elements = animateBy === 'words' ? text.split(' ') : text.split('');
+  // ✅ preserve spaces + line breaks
+  const elements =
+    animateBy === 'words'
+      ? text.split(/(\s+)/)
+      : text.split('');
+
   const [inView, setInView] = useState(false);
   const ref = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
     if (!ref.current) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setInView(true);
-          observer.unobserve(ref.current as Element);
+          observer.disconnect();
         }
       },
       { threshold, rootMargin }
     );
+
     observer.observe(ref.current);
     return () => observer.disconnect();
   }, [threshold, rootMargin]);
@@ -73,11 +84,7 @@ const BlurText: React.FC<BlurTextProps> = ({
 
   const defaultTo = useMemo(
     () => [
-      {
-        filter: 'blur(5px)',
-        opacity: 0.5,
-        y: direction === 'top' ? 5 : -5
-      },
+      { filter: 'blur(5px)', opacity: 0.5, y: direction === 'top' ? 5 : -5 },
       { filter: 'blur(0px)', opacity: 1, y: 0 }
     ],
     [direction]
@@ -93,9 +100,10 @@ const BlurText: React.FC<BlurTextProps> = ({
   );
 
   return (
-    <p ref={ref} className={`blur-text ${className} flex flex-wrap`}>
+    <p ref={ref} className={`blur-text ${className} block`}>
       {elements.map((segment, index) => {
         const animateKeyframes = buildKeyframes(fromSnapshot, toSnapshots);
+
         const spanTransition: Transition = {
           duration: totalDuration,
           times,
@@ -109,20 +117,18 @@ const BlurText: React.FC<BlurTextProps> = ({
             initial={fromSnapshot}
             animate={inView ? animateKeyframes : fromSnapshot}
             transition={spanTransition}
-            onAnimationComplete={index === elements.length - 1 ? onAnimationComplete : undefined}
-            style={{
-              display: 'inline-block',
-              willChange: 'transform, filter, opacity'
-            }}
-            // 👇 safely render HTML segments if isHTML=true
-            dangerouslySetInnerHTML={
-              isHTML
-                ? { __html: segment === ' ' ? '&nbsp;' : segment }
+            onAnimationComplete={
+              index === elements.length - 1
+                ? onAnimationComplete
                 : undefined
             }
+            style={{
+              display: 'inline-block',
+              whiteSpace: 'pre',
+              willChange: 'transform, filter, opacity'
+            }}
           >
-            {!isHTML && (segment === ' ' ? '\u00A0' : segment)}
-            {!isHTML && animateBy === 'words' && index < elements.length - 1 && '\u00A0'}
+            {segment}
           </motion.span>
         );
       })}
