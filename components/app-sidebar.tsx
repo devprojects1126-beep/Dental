@@ -73,7 +73,6 @@ export function AppSidebar() {
               {items.map((item,index) => (
                 <SidebarComponents 
                   key={index} 
-
                   item={item} 
                   active={active} 
                   setActive={setActive}
