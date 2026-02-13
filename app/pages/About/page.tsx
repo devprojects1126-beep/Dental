@@ -53,18 +53,9 @@ export default function Page(){
                         </h1>
 
                         {/* ✨ BlurText with full paragraph content */}
-                        <BlurText
-                      text={`   Welcome to Heavenly Touch Dental Clinic, your trusted partner in achieving a healthier, brighter smile. For over 20 years, Heavenly Touch Dental Clinic, led by Dr. Nel Rugas, has been providing exceptional dental care for over 20 years. 
-Their mission is to offer comprehensive, compassionate, and affordable dental services to help patients achieve optimal oral health. 
-The clinic emphasizes a comfortable, personalized experience, whether for routine check-ups, smile makeovers, or advanced restorative treatments. 
-With modern facilities and a caring team, they prioritize patient comfort and satisfaction. 
-The clinic has built lasting relationships based on trust, transparency, and genuine care, ensuring that every visit is both relaxing and rewarding.`}
-                        delay={100}
-                        animateBy="words"
-                        direction="top"
-                        onAnimationComplete={handleAnimationComplete}
-                       className="text-2xl leading-relaxed text-gray-800 whitespace-pre-line"
-                        />
+                        <p className="text-xl leading-relaxed text-gray-800 whitespace-pre-line"> 
+                            Welcome to Heavenly Touch Dental Clinic, your trusted partner in achieving a healthier, brighter smile. For over 20 years, Heavenly Touch Dental Clinic, led by Dr. Nel Rugas, has been providing exceptional dental care for over 20 years. Their mission is to offer comprehensive, compassionate, and affordable dental services to help patients achieve optimal oral health. The clinic emphasizes a comfortable, personalized experience, whether for routine check-ups, smile makeovers, or advanced restorative treatments. With modern facilities and a caring team, they prioritize patient comfort and satisfaction. The clinic has built lasting relationships based on trust, transparency, and genuine care, ensuring that every visit is both relaxing and rewarding.
+                        </p>
                     </div>
                 </FadeInSection>
             </div>
@@ -79,14 +70,9 @@ The clinic has built lasting relationships based on trust, transparency, and gen
                         </h1>
 
                         {/* ✨ BlurText with full paragraph content */}
-                        <BlurText
-                      text={`  To be a trusted dental care provider where every smile shines bright—guided by passion, compassion, and nearly 20 years of dedicated service. We envision a world where dental health is a priority, fear is replaced with comfort, and every patient feels genuinely valued and cared for.`}
-                        delay={100}
-                        animateBy="words"
-                        direction="top"
-                        onAnimationComplete={handleAnimationComplete}
-                       className="text-2xl leading-relaxed text-gray-800 whitespace-pre-line"
-                        />
+                        <p className="text-xl leading-relaxed text-gray-800 whitespace-pre-line">
+                            To be a trusted dental care provider where every smile shines bright—guided by passion, compassion, and nearly 20 years of dedicated service. We envision a world where dental health is a priority, fear is replaced with comfort, and every patient feels genuinely valued and cared for.
+                        </p>
                     </div>
                 </FadeInSection>
             </div>
@@ -99,14 +85,9 @@ The clinic has built lasting relationships based on trust, transparency, and gen
                         </h1>
 
                         {/* ✨ BlurText with full paragraph content */}
-                        <BlurText
-                      text={`   Our mission is to redefine the dental care experience through a holistic approach to dentistry, guided by love, care, and service. We are committed to delivering personalized treatments that meet each patient’s unique needs, preserving healthy smiles, and reducing dental fears. Through compassion and excellence, we strive to create a safe, welcoming environment where patients feel confident, respected, and empowered to prioritize their oral health.`}
-                        delay={100}
-                        animateBy="words"
-                        direction="top"
-                        onAnimationComplete={handleAnimationComplete}
-                       className="text-2xl leading-relaxed text-gray-800 whitespace-pre-line"
-                        />
+                        <p className="text-xl leading-relaxed text-gray-800 whitespace-pre-line">
+                             Our mission is to redefine the dental care experience through a holistic approach to dentistry, guided by love, care, and service. We are committed to delivering personalized treatments that meet each patient’s unique needs, preserving healthy smiles, and reducing dental fears. Through compassion and excellence, we strive to create a safe, welcoming environment where patients feel confident, respected, and empowered to prioritize their oral health.
+                        </p>
                     </div>
                 </FadeInSection>
             </div>
